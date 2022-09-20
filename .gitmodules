@@ -1,0 +1,40 @@
+[submodule "benchmark/lib/palacaze/sigslot"]
+	path = benchmark/lib/palacaze/sigslot
+	url = https://github.com/palacaze/sigslot.git
+	branch = master
+[submodule "benchmark/lib/NoAvailableAlias/nano-signal-slot"]
+	path = benchmark/lib/NoAvailableAlias/nano-signal-slot
+	url = https://github.com/NoAvailableAlias/nano-signal-slot.git
+	branch = master
+[submodule "benchmark/lib/miguelmartin75/Wink-Signals"]
+	path = benchmark/lib/miguelmartin75/Wink-Signals
+	url = https://github.com/miguelmartin75/Wink-Signals.git
+	branch = master
+[submodule "benchmark/lib/tripleslash/rocket"]
+	path = benchmark/lib/tripleslash/rocket
+	url = https://github.com/tripleslash/rocket.git
+	branch = master
+[submodule "benchmark/lib/fr00b0/nod"]
+	path = benchmark/lib/fr00b0/nod
+	url = https://github.com/fr00b0/nod.git
+	branch = master
+[submodule "benchmark/lib/TheWisp/signals"]
+	path = benchmark/lib/TheWisp/signals
+	url = https://github.com/TheWisp/signals.git
+	branch = master
+[submodule "benchmark/lib/Montellese/cpp-signal"]
+	path = benchmark/lib/Montellese/cpp-signal
+	url = https://github.com/Montellese/cpp-signal.git
+	branch = master
+[submodule "benchmark/lib/pbhogan/Signals"]
+	path = benchmark/lib/pbhogan/Signals
+	url = https://github.com/pbhogan/Signals.git
+	branch = master
+[submodule "benchmark/lib/Kosta-Github/signals-cpp"]
+	path = benchmark/lib/Kosta-Github/signals-cpp
+	url = https://github.com/Kosta-Github/signals-cpp.git
+	branch = master
+[submodule "benchmark/lib/mwthinker/Signal"]
+	path = benchmark/lib/mwthinker/Signal
+	url = https://github.com/mwthinker/Signal.git
+	branch = master
