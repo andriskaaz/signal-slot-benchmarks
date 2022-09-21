@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iomanip>
 #include <mutex>
+#include <string>
+#include <filesystem>
 
 // #include "benchmark/hpp/benchmark_aco.hpp"
 // #include "benchmark/hpp/benchmark_asg.hpp"
@@ -70,7 +72,9 @@ static std::size_t s_best_of_limit = 2;
 // Starting size of "N test size"
 static std::size_t s_start_test_size = 2;
 // The maximum test size of "N"
-static std::size_t s_ending_test_size = 2;
+static std::size_t s_ending_test_size = 32;
+// The maximum run time in seconds
+static std::size_t s_max_run_time = 30;
 // Store the previous full results of a particular converging run
 static BenchmarkClassResults s_current_results;
 // Main synchronization for copying s_current_results to the IO thread
@@ -465,6 +469,15 @@ void output_reports(BenchmarkClassResults const& records, T& ost)
 
 int main(int argc, char* argv[])
 {
+    #if defined(__clang__)
+        std::string compilerName("clang");
+    #elif defined(__GNUC__)
+        std::string compilerName("gcc");
+    #elif defined(_MSC_VER)
+        std::string compilerName("msvc");
+    #else
+        #error "Unknown compiler"
+    #endif
     // TODO:
     // Jl_signal uses a static allocator for maximum performance
     // jl::StaticSignalConnectionAllocator<C_JLSIGNAL_MAX> signal_con_allocator;
@@ -491,7 +504,8 @@ int main(int argc, char* argv[])
     {
         auto a2 = std::async(std::launch::async, []
         {
-            return std::cin.get();
+            std::this_thread::sleep_for(std::chrono::seconds(s_max_run_time));
+            return;
         });
 
         std::future_status s1;
@@ -527,20 +541,23 @@ int main(int argc, char* argv[])
     }
     a1.get();
 
-    if (std::ofstream ofs{ "report.txt", std::ios::app })
+    auto relativePath = std::string("../results/") + compilerName + "/" + "README.md";
+    auto path = std::filesystem::canonical(relativePath);
+ 
+    if (std::ofstream ofs{ path, std::ios::trunc })
     {
         auto start_c = std::chrono::system_clock::to_time_t(start);
 
         auto tee = std::tie(std::cout, ofs);
-        tee << "\n" << std::put_time(std::localtime(&start_c), "%c") << "\n";
+        // tee << "\n" << std::put_time(std::localtime(&start_c), "%c") << "\n";
 
         output_reports(s_current_results, tee);
         output_metrics_report(tee);
-        output_plotly_reports(s_current_results, tee);
+        // output_plotly_reports(s_current_results, tee);
 
         auto stop = std::chrono::system_clock::now();
         auto stop_c = std::chrono::system_clock::to_time_t(stop);
-        tee << "\n" << std::put_time(std::localtime(&stop_c), "%c") << "\n";
+        // tee << "\n" << std::put_time(std::localtime(&stop_c), "%c") << "\n";
 
         ofs << std::endl;
     }

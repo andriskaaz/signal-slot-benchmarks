@@ -48,9 +48,9 @@ class Kdb
     static double combined(std::size_t, std::size_t);
     static double threaded(std::size_t, std::size_t);
 
-    static constexpr const char* C_LIB_NAME = "* KDBA KDBindings";
+    static constexpr const char* C_LIB_NAME = "KDBA KDBindings";
     static constexpr const char* C_LIB_SOURCE_URL = "https://github.com/KDAB/KDBindings";
-    static constexpr const char* C_LIB_FILE = "benchmark_ksc";
+    static constexpr const char* C_LIB_FILE = "benchmark_kdb";
     static constexpr const char* C_LIB_IS_HEADER_ONLY = "X";
     static constexpr const char* C_LIB_DATA_STRUCTURE = "GenerationalIndexArray";
     static constexpr const char* C_LIB_IS_THREAD_SAFE = "-";
