@@ -18,7 +18,8 @@
 // #include "benchmark/hpp/benchmark_ics.hpp"
 // #include "benchmark/hpp/benchmark_jls.hpp"
 // #include "benchmark/hpp/benchmark_jos.hpp"
-// #include "benchmark/hpp/benchmark_ksc.hpp"
+#include "benchmark/hpp/benchmark_kdb.hpp"
+#include "benchmark/hpp/benchmark_ksc.hpp"
 #include "benchmark/hpp/benchmark_ktn.hpp"
 // #include "benchmark/hpp/benchmark_lcp.hpp"
 // #include "benchmark/hpp/benchmark_lfs.hpp"
@@ -69,7 +70,7 @@ static std::size_t s_best_of_limit = 2;
 // Starting size of "N test size"
 static std::size_t s_start_test_size = 2;
 // The maximum test size of "N"
-static std::size_t s_ending_test_size = 64;
+static std::size_t s_ending_test_size = 2;
 // Store the previous full results of a particular converging run
 static BenchmarkClassResults s_current_results;
 // Main synchronization for copying s_current_results to the IO thread
@@ -166,7 +167,8 @@ void run_all_benchmarks()
         // RUN_BENCHMARK_CLASS(Ics);
         // RUN_BENCHMARK_CLASS(Jls);
         // RUN_BENCHMARK_CLASS(Jos); // Must make sure Subject lives longer than Foo
-        // RUN_BENCHMARK_CLASS(Ksc);
+        RUN_BENCHMARK_CLASS(Ksc);
+        RUN_BENCHMARK_CLASS(Kdb);
         RUN_BENCHMARK_CLASS(Ktnss);
         // RUN_BENCHMARK_CLASS(Lcp);
         // RUN_BENCHMARK_CLASS(Lfs);
@@ -217,7 +219,8 @@ void run_all_validation_tests()
     // Ics::validate_assert(N);
     // Jls::validate_assert(N);
     // Jos::validate_assert(N);
-    // Ksc::validate_assert(N);
+    Kdb::validate_assert(N);
+    Ksc::validate_assert(N);
     Ktnss::validate_assert(N);
     // Lcp::validate_assert(N);
     // Lfs::validate_assert(N);
@@ -305,7 +308,8 @@ void output_metrics_report(T& ost)
     // output_metrics_report_row<Ics>(ost);
     // output_metrics_report_row<Jls>(ost);
     // output_metrics_report_row<Jos>(ost);
-    // output_metrics_report_row<Ksc>(ost);
+    output_metrics_report_row<Kdb>(ost);
+    output_metrics_report_row<Ksc>(ost);
     output_metrics_report_row<Ktnss>(ost);
     // output_metrics_report_row<Lcp>(ost);
     // output_metrics_report_row<Lfs>(ost);
@@ -469,8 +473,8 @@ int main(int argc, char* argv[])
     // jl::SignalObserver::SetCommonConnectionAllocator(&observer_con_allocator);
 
     // Make sure to set the process to high priority
-    std::cout << "Change the CPU priority now: [paused]" << std::endl;
-    std::cin.get();
+    // std::cout << "Change the CPU priority now: [paused]" << std::endl;
+    // std::cin.get();
 
     // Time the entire duration of the benchmark process
     auto start = std::chrono::system_clock::now();
@@ -479,8 +483,8 @@ int main(int argc, char* argv[])
     run_all_validation_tests();
 
     // Display any validation failures before screen clearing
-    std::cout << "Validation complete: [paused]" << std::endl;
-    std::cin.get();
+    std::cout << "Validation complete" << std::endl;
+    // std::cin.get();
 
     // There has got to be a better way...
     auto a1 = std::async(std::launch::async, []
@@ -540,5 +544,5 @@ int main(int argc, char* argv[])
 
         ofs << std::endl;
     }
-    std::cin.get();
+    // std::cin.get();
 }

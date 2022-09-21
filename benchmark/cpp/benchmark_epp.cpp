@@ -47,6 +47,6 @@ NOINLINE(double Epp::combined(std::size_t N, std::size_t limit))
 
 NOINLINE(double Epp::threaded(std::size_t N, std::size_t limit))
 {
-    // return 0.0;
-    return Benchmark<Signal, Epp>::threaded(N, limit);
+    return 0.0;
+    // return Benchmark<Signal, Epp>::threaded(N, limit);
 }

@@ -46,3 +46,7 @@
 	path = benchmark/lib/wqking/eventpp
 	url = https://github.com/wqking/eventpp.git
 	branch = master
+[submodule "benchmark/lib/KDAB/KDBindings"]
+	path = benchmark/lib/KDAB/KDBindings
+	url = https://github.com/KDAB/KDBindings.git
+	branch = 1.0

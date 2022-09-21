@@ -1,13 +1,12 @@
 #pragma once
 
-#include "../lib/wqking/eventpp/include/eventpp/utilities/scopedremover.h"
-#include "../lib/wqking/eventpp/include/eventpp/callbacklist.h"
+#include "../lib/KDAB/KDBindings/src/kdbindings/signal.h"
 
 #include "../../benchmark.hpp"
 
-class Epp
+class Kdb
 {
-    eventpp::ScopedRemover<eventpp::CallbackList<void(Rng&)>> reg;
+    KDBindings::ConnectionHandle reg;
 
     NOINLINE(void handler(Rng& rng))
     {
@@ -15,19 +14,25 @@ class Epp
     }
 
     public:
-    using Signal = eventpp::CallbackList<void(Rng&)>;
+
+    Kdb() {
+    }
+
+    ~Kdb() {
+        reg.disconnect();
+    }
+
+    using Signal = KDBindings::Signal<Rng&>;
 
     template <typename Subject, typename Foo>
     static void connect_method(Subject& subject, Foo& foo)
     {
-        foo.reg.setCallbackList(subject);
-        foo.reg.append(std::bind(&Foo::handler, &foo, std::placeholders::_1));
-        // subject.append(std::bind(&Foo::handler, &foo, std::placeholders::_1));
+        foo.reg = subject.connect(&Foo::handler, foo);
     }
     template <typename Subject>
     static void emit_method(Subject& subject, Rng& rng)
     {
-        subject(rng);
+        subject.emit(rng);
     }
 
     // Used for switching policies at runtime
@@ -43,13 +48,12 @@ class Epp
     static double combined(std::size_t, std::size_t);
     static double threaded(std::size_t, std::size_t);
 
-    // The following is used for report outputs
-    static constexpr const char* C_LIB_NAME = "wqking eventpp";
-    static constexpr const char* C_LIB_SOURCE_URL = "https://github.com/wqking/eventpp";
-    static constexpr const char* C_LIB_FILE = "benchmark_epp";
+    static constexpr const char* C_LIB_NAME = "* KDBA KDBindings";
+    static constexpr const char* C_LIB_SOURCE_URL = "https://github.com/KDAB/KDBindings";
+    static constexpr const char* C_LIB_FILE = "benchmark_ksc";
     static constexpr const char* C_LIB_IS_HEADER_ONLY = "X";
-    static constexpr const char* C_LIB_DATA_STRUCTURE = "doubly linked list";
-    static constexpr const char* C_LIB_IS_THREAD_SAFE = "X";
+    static constexpr const char* C_LIB_DATA_STRUCTURE = "GenerationalIndexArray";
+    static constexpr const char* C_LIB_IS_THREAD_SAFE = "-";
 
     static constexpr const std::size_t C_LIB_SIZEOF_SIGNAL = sizeof(Signal);
 };

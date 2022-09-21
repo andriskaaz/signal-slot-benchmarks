@@ -1,13 +1,12 @@
 #pragma once
 
-#include "../lib/wqking/eventpp/include/eventpp/utilities/scopedremover.h"
-#include "../lib/wqking/eventpp/include/eventpp/callbacklist.h"
+#include "../lib/Kosta-Github/signals-cpp/signals-cpp/signals.hpp"
 
 #include "../../benchmark.hpp"
 
-class Epp
+class Ksc
 {
-    eventpp::ScopedRemover<eventpp::CallbackList<void(Rng&)>> reg;
+    sigs::connection reg;
 
     NOINLINE(void handler(Rng& rng))
     {
@@ -15,19 +14,22 @@ class Epp
     }
 
     public:
-    using Signal = eventpp::CallbackList<void(Rng&)>;
+
+    Ksc() = default;
+    ~Ksc() { reg.disconnect(); }
+
+    using Signal = sigs::signal<void(Rng&)>;
 
     template <typename Subject, typename Foo>
     static void connect_method(Subject& subject, Foo& foo)
     {
-        foo.reg.setCallbackList(subject);
-        foo.reg.append(std::bind(&Foo::handler, &foo, std::placeholders::_1));
-        // subject.append(std::bind(&Foo::handler, &foo, std::placeholders::_1));
+        //foo.reg = subject.connect(std::bind(&Foo::handler, &foo, std::placeholders::_1));
+        foo.reg = subject.connect(&foo, &Foo::handler);
     }
     template <typename Subject>
     static void emit_method(Subject& subject, Rng& rng)
     {
-        subject(rng);
+        subject.fire(rng);
     }
 
     // Used for switching policies at runtime
@@ -43,12 +45,11 @@ class Epp
     static double combined(std::size_t, std::size_t);
     static double threaded(std::size_t, std::size_t);
 
-    // The following is used for report outputs
-    static constexpr const char* C_LIB_NAME = "wqking eventpp";
-    static constexpr const char* C_LIB_SOURCE_URL = "https://github.com/wqking/eventpp";
-    static constexpr const char* C_LIB_FILE = "benchmark_epp";
+    static constexpr const char* C_LIB_NAME = "* Kosta signals-cpp";
+    static constexpr const char* C_LIB_SOURCE_URL = "https://github.com/Kosta-Github/signals-cpp";
+    static constexpr const char* C_LIB_FILE = "benchmark_ksc";
     static constexpr const char* C_LIB_IS_HEADER_ONLY = "X";
-    static constexpr const char* C_LIB_DATA_STRUCTURE = "doubly linked list";
+    static constexpr const char* C_LIB_DATA_STRUCTURE = "std::vector";
     static constexpr const char* C_LIB_IS_THREAD_SAFE = "X";
 
     static constexpr const std::size_t C_LIB_SIZEOF_SIGNAL = sizeof(Signal);

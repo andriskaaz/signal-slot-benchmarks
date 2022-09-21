@@ -59,7 +59,8 @@ add_executable(bench
     # benchmark/cpp/benchmark_ics.cpp
     # benchmark/cpp/benchmark_jls.cpp
     # benchmark/cpp/benchmark_jos.cpp
-    # benchmark/cpp/benchmark_ksc.cpp
+    benchmark/cpp/benchmark_kdb.cpp
+    benchmark/cpp/benchmark_ksc.cpp
     benchmark/cpp/benchmark_ktn.cpp
     # benchmark/cpp/benchmark_lfs.cpp
     # benchmark/cpp/benchmark_lcp.cpp
@@ -89,7 +90,10 @@ add_executable(bench
 # add_subdirectory(benchmark/lib/iscool)
 
 set_target_properties(bench PROPERTIES CXX_EXTENSIONS NO)
-target_include_directories(bench PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} benchmark/lib/Montellese/cpp-signal/include)
+target_include_directories(bench PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
+  benchmark/lib/Montellese/cpp-signal/include
+  benchmark/lib/KDAB/KDBindings/src
+)
 # target_include_directories(bench PUBLIC benchmark/lib/Montellese/cpp-signal)
 target_compile_options(bench PRIVATE  "-fdiagnostics-color=always")
 target_link_libraries(bench
