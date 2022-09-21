@@ -1,7 +1,7 @@
 #pragma once
 
-#include <miguelmartin/Wink-Signals/wink/signal.hpp>
-#include <miguelmartin/Wink-Signals/wink/slot.hpp>
+#include <miguelmartin75/Wink-Signals/wink/signal.hpp>
+#include <miguelmartin75/Wink-Signals/wink/slot.hpp>
 
 #include <memory>
 

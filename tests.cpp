@@ -4,40 +4,40 @@
   - any way to have a signal returning a value?
  */
 
-#include "tests/hpp/signal_traits_aco.hpp"
-#include "tests/hpp/signal_traits_asg.hpp"
-#include "tests/hpp/signal_traits_bs2.hpp"
-#include "tests/hpp/signal_traits_bs2_st.hpp"
-#include "tests/hpp/signal_traits_cls.hpp"
-#include "tests/hpp/signal_traits_cps.hpp"
-#include "tests/hpp/signal_traits_cps_st.hpp"
-#include "tests/hpp/signal_traits_css.hpp"
-#include "tests/hpp/signal_traits_dob.hpp"
-#include "tests/hpp/signal_traits_evl.hpp"
-#include "tests/hpp/signal_traits_ics.hpp"
-#include "tests/hpp/signal_traits_jls.hpp"
-#include "tests/hpp/signal_traits_jos.hpp"
-#include "tests/hpp/signal_traits_ksc.hpp"
-#include "tests/hpp/signal_traits_ktn.hpp"
-#include "tests/hpp/signal_traits_lfs.hpp"
-#include "tests/hpp/signal_traits_lss.hpp"
-#include "tests/hpp/signal_traits_mws.hpp"
-#include "tests/hpp/signal_traits_nes.hpp"
-#include "tests/hpp/signal_traits_nls.hpp"
-#include "tests/hpp/signal_traits_nls_st.hpp"
+// #include "tests/hpp/signal_traits_aco.hpp"
+// #include "tests/hpp/signal_traits_asg.hpp"
+// #include "tests/hpp/signal_traits_bs2.hpp"
+// #include "tests/hpp/signal_traits_bs2_st.hpp"
+// #include "tests/hpp/signal_traits_cls.hpp"
+// #include "tests/hpp/signal_traits_cps.hpp"
+// #include "tests/hpp/signal_traits_cps_st.hpp"
+// #include "tests/hpp/signal_traits_css.hpp"
+// #include "tests/hpp/signal_traits_dob.hpp"
+// #include "tests/hpp/signal_traits_evl.hpp"
+// #include "tests/hpp/signal_traits_ics.hpp"
+// #include "tests/hpp/signal_traits_jls.hpp"
+// #include "tests/hpp/signal_traits_jos.hpp"
+// #include "tests/hpp/signal_traits_ksc.hpp"
+// #include "tests/hpp/signal_traits_ktn.hpp"
+// #include "tests/hpp/signal_traits_lfs.hpp"
+// #include "tests/hpp/signal_traits_lss.hpp"
+// #include "tests/hpp/signal_traits_mws.hpp"
+// #include "tests/hpp/signal_traits_nes.hpp"
+// #include "tests/hpp/signal_traits_nls.hpp"
+// #include "tests/hpp/signal_traits_nls_st.hpp"
 #include "tests/hpp/signal_traits_nod.hpp"
 #include "tests/hpp/signal_traits_nod_st.hpp"
-#include "tests/hpp/signal_traits_nss_st.hpp"
-#include "tests/hpp/signal_traits_nss_sts.hpp"
-#include "tests/hpp/signal_traits_nss_ts.hpp"
-#include "tests/hpp/signal_traits_nss_tss.hpp"
-#include "tests/hpp/signal_traits_psg.hpp"
-#include "tests/hpp/signal_traits_pss.hpp"
-#include "tests/hpp/signal_traits_pss_st.hpp"
-#include "tests/hpp/signal_traits_sss.hpp"
-#include "tests/hpp/signal_traits_vdk.hpp"
-#include "tests/hpp/signal_traits_wnk.hpp"
-#include "tests/hpp/signal_traits_yas.hpp"
+// #include "tests/hpp/signal_traits_nss_st.hpp"
+// #include "tests/hpp/signal_traits_nss_sts.hpp"
+// #include "tests/hpp/signal_traits_nss_ts.hpp"
+// #include "tests/hpp/signal_traits_nss_tss.hpp"
+// #include "tests/hpp/signal_traits_psg.hpp"
+// #include "tests/hpp/signal_traits_pss.hpp"
+// #include "tests/hpp/signal_traits_pss_st.hpp"
+// #include "tests/hpp/signal_traits_sss.hpp"
+// #include "tests/hpp/signal_traits_vdk.hpp"
+// #include "tests/hpp/signal_traits_wnk.hpp"
+// #include "tests/hpp/signal_traits_yas.hpp"
 
 #include "tests/hpp/fenced_typed_test.hpp"
 #include "tests/hpp/test_non_template_base.hpp"
@@ -73,40 +73,40 @@ public:
 using all_traits =
   testing::Types
   <
-  signal_traits_aco,
-    signal_traits_asg,
-    signal_traits_bs2,
-    signal_traits_bs2_st,
-    signal_traits_cls,
-    signal_traits_cps,
-    signal_traits_cps_st,
-    signal_traits_css,
-    signal_traits_dob,
-    signal_traits_evl,
-    signal_traits_ics,
-    signal_traits_jls,
-    signal_traits_jos,
-    signal_traits_ksc,
-    signal_traits_ktn,
-    signal_traits_lfs,
-    signal_traits_lss,
-    signal_traits_mws,
-    signal_traits_nes,
-    signal_traits_nls,
-    signal_traits_nls_st,
+    // signal_traits_aco,
+    // signal_traits_asg,
+    // signal_traits_bs2,
+    // signal_traits_bs2_st,
+    // signal_traits_cls,
+    // signal_traits_cps,
+    // signal_traits_cps_st,
+    // signal_traits_css,
+    // signal_traits_dob,
+    // signal_traits_evl,
+    // signal_traits_ics,
+    // signal_traits_jls,
+    // signal_traits_jos,
+    // signal_traits_ksc,
+    // signal_traits_ktn,
+    // signal_traits_lfs,
+    // signal_traits_lss,
+    // signal_traits_mws,
+    // signal_traits_nes,
+    // signal_traits_nls,
+    // signal_traits_nls_st,
     signal_traits_nod,
-    signal_traits_nod_st,
-    signal_traits_nss_st,
-    signal_traits_nss_sts,
-    signal_traits_nss_ts,
-    signal_traits_nss_tss,
-    signal_traits_psg,
-    signal_traits_pss,
-    signal_traits_pss_st,
-    signal_traits_sss,
-    signal_traits_vdk,
-    signal_traits_wnk,
-    signal_traits_yas
+    signal_traits_nod_st
+    // signal_traits_nss_st,
+    // signal_traits_nss_sts,
+    // signal_traits_nss_ts,
+    // signal_traits_nss_tss,
+    // signal_traits_psg,
+    // signal_traits_pss,
+    // signal_traits_pss_st,
+    // signal_traits_sss,
+    // signal_traits_vdk,
+    // signal_traits_wnk,
+    // signal_traits_yas
   >;
 
 TYPED_TEST_CASE(signal_test, all_traits);

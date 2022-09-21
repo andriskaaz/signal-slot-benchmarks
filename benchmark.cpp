@@ -1,49 +1,52 @@
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
+#include <mutex>
 
-#include "benchmark/hpp/benchmark_aco.hpp"
-#include "benchmark/hpp/benchmark_asg.hpp"
-#include "benchmark/hpp/benchmark_bs2.hpp"
-#include "benchmark/hpp/benchmark_bs2_st.hpp"
-#include "benchmark/hpp/benchmark_cls.hpp"
+// #include "benchmark/hpp/benchmark_aco.hpp"
+// #include "benchmark/hpp/benchmark_asg.hpp"
+// #include "benchmark/hpp/benchmark_bs2.hpp"
+// #include "benchmark/hpp/benchmark_bs2_st.hpp"
+// #include "benchmark/hpp/benchmark_cls.hpp"
 #include "benchmark/hpp/benchmark_cps.hpp"
 #include "benchmark/hpp/benchmark_cps_st.hpp"
-#include "benchmark/hpp/benchmark_css.hpp"
-#include "benchmark/hpp/benchmark_dob.hpp"
-#include "benchmark/hpp/benchmark_evl.hpp"
-#include "benchmark/hpp/benchmark_ics.hpp"
-#include "benchmark/hpp/benchmark_jls.hpp"
-#include "benchmark/hpp/benchmark_jos.hpp"
-#include "benchmark/hpp/benchmark_ksc.hpp"
+// #include "benchmark/hpp/benchmark_css.hpp"
+// #include "benchmark/hpp/benchmark_dob.hpp"
+// #include "benchmark/hpp/benchmark_evl.hpp"
+#include "benchmark/hpp/benchmark_epp.hpp"
+#include "benchmark/hpp/benchmark_fts.hpp"
+// #include "benchmark/hpp/benchmark_ics.hpp"
+// #include "benchmark/hpp/benchmark_jls.hpp"
+// #include "benchmark/hpp/benchmark_jos.hpp"
+// #include "benchmark/hpp/benchmark_ksc.hpp"
 #include "benchmark/hpp/benchmark_ktn.hpp"
-#include "benchmark/hpp/benchmark_lcp.hpp"
-#include "benchmark/hpp/benchmark_lfs.hpp"
-#include "benchmark/hpp/benchmark_lss.hpp"
-#include "benchmark/hpp/benchmark_mws.hpp"
-#include "benchmark/hpp/benchmark_nes.hpp"
-#include "benchmark/hpp/benchmark_nls.hpp"
-#include "benchmark/hpp/benchmark_nls_st.hpp"
+// #include "benchmark/hpp/benchmark_lcp.hpp"
+// #include "benchmark/hpp/benchmark_lfs.hpp"
+// #include "benchmark/hpp/benchmark_lss.hpp"
+// #include "benchmark/hpp/benchmark_mws.hpp"
+// #include "benchmark/hpp/benchmark_nes.hpp"
+// #include "benchmark/hpp/benchmark_nls.hpp"
+// #include "benchmark/hpp/benchmark_nls_st.hpp"
 #include "benchmark/hpp/benchmark_nod.hpp"
 #include "benchmark/hpp/benchmark_nod_st.hpp"
-#include "benchmark/hpp/benchmark_nss_st.hpp"
-#include "benchmark/hpp/benchmark_nss_sts.hpp"
-#include "benchmark/hpp/benchmark_nss_ts.hpp"
-#include "benchmark/hpp/benchmark_nss_tss.hpp"
+// #include "benchmark/hpp/benchmark_nss_st.hpp"
+// #include "benchmark/hpp/benchmark_nss_sts.hpp"
+// #include "benchmark/hpp/benchmark_nss_ts.hpp"
+// #include "benchmark/hpp/benchmark_nss_tss.hpp"
 #include "benchmark/hpp/benchmark_psg.hpp"
 #include "benchmark/hpp/benchmark_pss.hpp"
 #include "benchmark/hpp/benchmark_pss_st.hpp"
-#include "benchmark/hpp/benchmark_sss.hpp"
+// #include "benchmark/hpp/benchmark_sss.hpp"
 #include "benchmark/hpp/benchmark_tsr.hpp"
 #include "benchmark/hpp/benchmark_tsr_st.hpp"
-#include "benchmark/hpp/benchmark_wnk.hpp"
-#include "benchmark/hpp/benchmark_yas.hpp"
-#include "benchmark/hpp/benchmark_vdk.hpp"
-#include "benchmark/hpp/benchmark_vdk_st.hpp"
+// #include "benchmark/hpp/benchmark_wnk.hpp"
+// #include "benchmark/hpp/benchmark_yas.hpp"
+// #include "benchmark/hpp/benchmark_vdk.hpp"
+// #include "benchmark/hpp/benchmark_vdk_st.hpp"
 
 // These are required in Main to initialize the jlsignal allocator
-#include "benchmark/lib/jeffomatic/jl_signal/src/Signal.h"
-#include "benchmark/lib/jeffomatic/jl_signal/src/StaticSignalConnectionAllocators.h"
+// #include "benchmark/lib/jeffomatic/jl_signal/src/Signal.h"
+// #include "benchmark/lib/jeffomatic/jl_signal/src/StaticSignalConnectionAllocators.h"
 
 #include "benchmark/lib/NoAvailableAlias/nano-signal-slot/nano_mutex.hpp"
 
@@ -51,8 +54,11 @@
 
 //------------------------------------------------------------------------------
 
+// TODO:
 using Mutex = Nano::Spin_Mutex;
 using Lock_Guard = std::lock_guard<Mutex>;
+// using Mutex = std::mutex;
+// using Lock_Guard = std::lock_guard<Mutex>;
 
 //------------------------------------------------------------------------------
 
@@ -145,44 +151,46 @@ void run_all_benchmarks()
     // Double the test size N for every iteration
     for (auto N = s_start_test_size; N <= s_ending_test_size; N *= 2)
     {
-        RUN_BENCHMARK_CLASS(Aco);
-        RUN_BENCHMARK_CLASS(Asg);
-        RUN_BENCHMARK_CLASS(Bs2);
-        RUN_BENCHMARK_CLASS(Bs2_st);
-        RUN_BENCHMARK_CLASS(Cls); // Must make sure Subject lives longer than Foo
+        // RUN_BENCHMARK_CLASS(Aco);
+        // RUN_BENCHMARK_CLASS(Asg);
+        // RUN_BENCHMARK_CLASS(Bs2);
+        // RUN_BENCHMARK_CLASS(Bs2_st);
+        // RUN_BENCHMARK_CLASS(Cls); // Must make sure Subject lives longer than Foo
         RUN_BENCHMARK_CLASS(Cps);
         RUN_BENCHMARK_CLASS(Cps_st);
-        RUN_BENCHMARK_CLASS(Css);
-        RUN_BENCHMARK_CLASS(Dob); // Must make sure Subject lives longer than Foo
-        RUN_BENCHMARK_CLASS(Evl);
-        RUN_BENCHMARK_CLASS(Ics);
-        RUN_BENCHMARK_CLASS(Jls);
-        RUN_BENCHMARK_CLASS(Jos); // Must make sure Subject lives longer than Foo
-        RUN_BENCHMARK_CLASS(Ksc);
+        // RUN_BENCHMARK_CLASS(Css);
+        // RUN_BENCHMARK_CLASS(Dob); // Must make sure Subject lives longer than Foo
+        // RUN_BENCHMARK_CLASS(Evl);
+        RUN_BENCHMARK_CLASS(Epp);
+        RUN_BENCHMARK_CLASS(Fts);
+        // RUN_BENCHMARK_CLASS(Ics);
+        // RUN_BENCHMARK_CLASS(Jls);
+        // RUN_BENCHMARK_CLASS(Jos); // Must make sure Subject lives longer than Foo
+        // RUN_BENCHMARK_CLASS(Ksc);
         RUN_BENCHMARK_CLASS(Ktnss);
-        RUN_BENCHMARK_CLASS(Lcp);
-        RUN_BENCHMARK_CLASS(Lfs);
-        RUN_BENCHMARK_CLASS(Lss); // Must make sure Subject lives longer than Foo
-        RUN_BENCHMARK_CLASS(Mws);
-        RUN_BENCHMARK_CLASS(Nes);
-        RUN_BENCHMARK_CLASS(Nls);
-        RUN_BENCHMARK_CLASS(Nls_st);
+        // RUN_BENCHMARK_CLASS(Lcp);
+        // RUN_BENCHMARK_CLASS(Lfs);
+        // RUN_BENCHMARK_CLASS(Lss); // Must make sure Subject lives longer than Foo
+        // RUN_BENCHMARK_CLASS(Mws);
+        // RUN_BENCHMARK_CLASS(Nes);
+        // RUN_BENCHMARK_CLASS(Nls);
+        // RUN_BENCHMARK_CLASS(Nls_st);
         RUN_BENCHMARK_CLASS(Nod);
         RUN_BENCHMARK_CLASS(Nod_st);
-        RUN_BENCHMARK_CLASS(Nss_st);
-        RUN_BENCHMARK_CLASS(Nss_sts);
-        RUN_BENCHMARK_CLASS(Nss_ts);
-        RUN_BENCHMARK_CLASS(Nss_tss);
+        // RUN_BENCHMARK_CLASS(Nss_st);
+        // RUN_BENCHMARK_CLASS(Nss_sts);
+        // RUN_BENCHMARK_CLASS(Nss_ts);
+        // RUN_BENCHMARK_CLASS(Nss_tss);
         RUN_BENCHMARK_CLASS(Psg);
         RUN_BENCHMARK_CLASS(Pss);
         RUN_BENCHMARK_CLASS(Pss_st);
-        RUN_BENCHMARK_CLASS(Sss);
+        // RUN_BENCHMARK_CLASS(Sss);
         RUN_BENCHMARK_CLASS(Tsr);
         RUN_BENCHMARK_CLASS(Tsr_st);
-        RUN_BENCHMARK_CLASS(Wnk); // Must make sure Subject lives longer than Foo
-        RUN_BENCHMARK_CLASS(Yas);
-        //RUN_BENCHMARK_CLASS(Vdk); // msvc compilation error
-        RUN_BENCHMARK_CLASS(Vdk_st);
+        // RUN_BENCHMARK_CLASS(Wnk); // Must make sure Subject lives longer than Foo
+        // RUN_BENCHMARK_CLASS(Yas);
+        // //RUN_BENCHMARK_CLASS(Vdk); // msvc compilation error
+        // RUN_BENCHMARK_CLASS(Vdk_st);
     }
 
 #undef RUN_BENCHMARK_CLASS
@@ -194,44 +202,46 @@ void run_all_validation_tests()
 {
     auto N = s_ending_test_size;
 
-    Aco::validate_assert(N);
-    Asg::validate_assert(N);
-    Bs2::validate_assert(N);
-    Bs2_st::validate_assert(N);
-    Cls::validate_assert(N);
+    // Aco::validate_assert(N);
+    // Asg::validate_assert(N);
+    // Bs2::validate_assert(N);
+    // Bs2_st::validate_assert(N);
+    // Cls::validate_assert(N);
     Cps::validate_assert(N);
     Cps_st::validate_assert(N);
-    Css::validate_assert(N);
-    Dob::validate_assert(N);
-    Evl::validate_assert(N);
-    Ics::validate_assert(N);
-    Jls::validate_assert(N);
-    Jos::validate_assert(N);
-    Ksc::validate_assert(N);
+    // Css::validate_assert(N);
+    // Dob::validate_assert(N);
+    // Evl::validate_assert(N);
+    Epp::validate_assert(N);
+    Fts::validate_assert(N);
+    // Ics::validate_assert(N);
+    // Jls::validate_assert(N);
+    // Jos::validate_assert(N);
+    // Ksc::validate_assert(N);
     Ktnss::validate_assert(N);
-    Lcp::validate_assert(N);
-    Lfs::validate_assert(N);
-    Lss::validate_assert(N);
-    Mws::validate_assert(N);
-    Nes::validate_assert(N);
-    Nls::validate_assert(N);
-    Nls_st::validate_assert(N);
+    // Lcp::validate_assert(N);
+    // Lfs::validate_assert(N);
+    // Lss::validate_assert(N);
+    // Mws::validate_assert(N);
+    // Nes::validate_assert(N);
+    // Nls::validate_assert(N);
+    // Nls_st::validate_assert(N);
     Nod::validate_assert(N);
     Nod_st::validate_assert(N);
-    Nss_st::validate_assert(N);
-    Nss_sts::validate_assert(N);
-    Nss_ts::validate_assert(N);
-    Nss_tss::validate_assert(N);
+    // Nss_st::validate_assert(N);
+    // Nss_sts::validate_assert(N);
+    // Nss_ts::validate_assert(N);
+    // Nss_tss::validate_assert(N);
     Psg::validate_assert(N);
     Pss::validate_assert(N);
     Pss_st::validate_assert(N);
-    Sss::validate_assert(N);
+    // Sss::validate_assert(N);
     Tsr::validate_assert(N);
     Tsr_st::validate_assert(N);
-    Wnk::validate_assert(N);
-    Yas::validate_assert(N);
-    //Vdk::validate_assert(N); // msvc compilation error
-    Vdk_st::validate_assert(N);
+    // Wnk::validate_assert(N);
+    // Yas::validate_assert(N);
+    // //Vdk::validate_assert(N); // msvc compilation error
+    // Vdk_st::validate_assert(N);
 }
 
 //------------------------------------------------------------------------------
@@ -280,44 +290,46 @@ void output_metrics_report(T& ost)
     ost << "\n| Library | Build Size | Signal Size | Header Only | Data Structure | Thread Safe |\n"
         << "| ------- |:----------:|:-----------:|:-----------:| -------------- |:-----------:|\n";
 
-    output_metrics_report_row<Aco>(ost);
-    output_metrics_report_row<Asg>(ost);
-    output_metrics_report_row<Bs2>(ost);
-    output_metrics_report_row<Bs2_st>(ost);
-    output_metrics_report_row<Cls>(ost);
+    // output_metrics_report_row<Aco>(ost);
+    // output_metrics_report_row<Asg>(ost);
+    // output_metrics_report_row<Bs2>(ost);
+    // output_metrics_report_row<Bs2_st>(ost);
+    // output_metrics_report_row<Cls>(ost);
     output_metrics_report_row<Cps>(ost);
     output_metrics_report_row<Cps_st>(ost);
-    output_metrics_report_row<Css>(ost);
-    output_metrics_report_row<Dob>(ost);
-    output_metrics_report_row<Evl>(ost);
-    output_metrics_report_row<Ics>(ost);
-    output_metrics_report_row<Jls>(ost);
-    output_metrics_report_row<Jos>(ost);
-    output_metrics_report_row<Ksc>(ost);
+    // output_metrics_report_row<Css>(ost);
+    // output_metrics_report_row<Dob>(ost);
+    // output_metrics_report_row<Evl>(ost);
+    output_metrics_report_row<Epp>(ost);
+    output_metrics_report_row<Fts>(ost);
+    // output_metrics_report_row<Ics>(ost);
+    // output_metrics_report_row<Jls>(ost);
+    // output_metrics_report_row<Jos>(ost);
+    // output_metrics_report_row<Ksc>(ost);
     output_metrics_report_row<Ktnss>(ost);
-    output_metrics_report_row<Lcp>(ost);
-    output_metrics_report_row<Lfs>(ost);
-    output_metrics_report_row<Lss>(ost);
-    output_metrics_report_row<Mws>(ost);
-    output_metrics_report_row<Nes>(ost);
-    output_metrics_report_row<Nls>(ost);
-    output_metrics_report_row<Nls_st>(ost);
+    // output_metrics_report_row<Lcp>(ost);
+    // output_metrics_report_row<Lfs>(ost);
+    // output_metrics_report_row<Lss>(ost);
+    // output_metrics_report_row<Mws>(ost);
+    // output_metrics_report_row<Nes>(ost);
+    // output_metrics_report_row<Nls>(ost);
+    // output_metrics_report_row<Nls_st>(ost);
     output_metrics_report_row<Nod>(ost);
     output_metrics_report_row<Nod_st>(ost);
-    output_metrics_report_row<Nss_st>(ost);
-    output_metrics_report_row<Nss_sts>(ost);
-    output_metrics_report_row<Nss_ts>(ost);
-    output_metrics_report_row<Nss_tss>(ost);
+    // output_metrics_report_row<Nss_st>(ost);
+    // output_metrics_report_row<Nss_sts>(ost);
+    // output_metrics_report_row<Nss_ts>(ost);
+    // output_metrics_report_row<Nss_tss>(ost);
     output_metrics_report_row<Psg>(ost);
     output_metrics_report_row<Pss>(ost);
     output_metrics_report_row<Pss_st>(ost);
-    output_metrics_report_row<Sss>(ost);
+    // output_metrics_report_row<Sss>(ost);
     output_metrics_report_row<Tsr>(ost);
     output_metrics_report_row<Tsr_st>(ost);
-    output_metrics_report_row<Wnk>(ost);
-    output_metrics_report_row<Yas>(ost);
-    //output_metrics_report_row<Vdk>(ost); // msvc compilation error
-    output_metrics_report_row<Vdk_st>(ost);
+    // output_metrics_report_row<Wnk>(ost);
+    // output_metrics_report_row<Yas>(ost);
+    // //output_metrics_report_row<Vdk>(ost); // msvc compilation error
+    // output_metrics_report_row<Vdk_st>(ost);
 }
 
 //------------------------------------------------------------------------------
@@ -449,11 +461,12 @@ void output_reports(BenchmarkClassResults const& records, T& ost)
 
 int main(int argc, char* argv[])
 {
+    // TODO:
     // Jl_signal uses a static allocator for maximum performance
-    jl::StaticSignalConnectionAllocator<C_JLSIGNAL_MAX> signal_con_allocator;
-    jl::StaticObserverConnectionAllocator<C_JLSIGNAL_MAX> observer_con_allocator;
-    jl::SignalBase::SetCommonConnectionAllocator(&signal_con_allocator);
-    jl::SignalObserver::SetCommonConnectionAllocator(&observer_con_allocator);
+    // jl::StaticSignalConnectionAllocator<C_JLSIGNAL_MAX> signal_con_allocator;
+    // jl::StaticObserverConnectionAllocator<C_JLSIGNAL_MAX> observer_con_allocator;
+    // jl::SignalBase::SetCommonConnectionAllocator(&signal_con_allocator);
+    // jl::SignalObserver::SetCommonConnectionAllocator(&observer_con_allocator);
 
     // Make sure to set the process to high priority
     std::cout << "Change the CPU priority now: [paused]" << std::endl;

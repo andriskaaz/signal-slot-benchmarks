@@ -38,3 +38,11 @@
 	path = benchmark/lib/mwthinker/Signal
 	url = https://github.com/mwthinker/Signal.git
 	branch = master
+[submodule "benchmark/lib/KtnFramework/KtnSignalSlot"]
+	path = benchmark/lib/KtnFramework/KtnSignalSlot
+	url = https://gitlab.com/KtnFramework/Libraries/KtnSignalSlot.git
+	branch = master
+[submodule "benchmark/lib/wqking/eventpp"]
+	path = benchmark/lib/wqking/eventpp
+	url = https://github.com/wqking/eventpp.git
+	branch = master
