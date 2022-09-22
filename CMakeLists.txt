@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
 # dependencies
-find_package(Boost COMPONENTS system chrono thread REQUIRED)
+# find_package(Boost COMPONENTS system chrono thread REQUIRED)
 find_package(Threads)
 
 add_library(signal_libraries
@@ -97,7 +97,10 @@ target_include_directories(bench PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
 # target_include_directories(bench PUBLIC benchmark/lib/Montellese/cpp-signal)
 target_compile_options(bench PRIVATE  "-fdiagnostics-color=always")
 target_link_libraries(bench
-  signal_libraries Boost::system Boost::chrono Threads::Threads)
+  signal_libraries 
+  #Boost::system Boost::chrono
+  Threads::Threads
+)
 
 #-------------------------------------------------------------------------------
 # Tests
@@ -127,4 +130,7 @@ target_include_directories(tests
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} benchmark/lib/)
 target_compile_options(tests PRIVATE  "-fdiagnostics-color=always")
 target_link_libraries(tests
-  signal_libraries Boost::system Boost::chrono Threads::Threads GTest::GTest)
+  signal_libraries 
+  #Boost::system Boost::chrono
+  Threads::Threads GTest::GTest
+)

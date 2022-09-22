@@ -14,8 +14,8 @@ bool exited_with_code_stored::operator()(int exit_status)
 {
 # if GTEST_OS_WINDOWS || GTEST_OS_FUCHSIA
 
-  *m_actual_exit_code = exit_code;
-  return exit_status == m_expected_exit_code_;
+  *m_actual_exit_code = exit_status;
+  return exit_status == m_expected_exit_code;
 
 #else
   if (!WIFEXITED(exit_status))
