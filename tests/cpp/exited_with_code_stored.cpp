@@ -1,6 +1,7 @@
 #include "tests/hpp/exited_with_code_stored.hpp"
 
 #include <gtest/gtest.h>
+#define GTEST_OS_WINDOWS
 
 exited_with_code_stored::exited_with_code_stored
 (int* exit_code)
@@ -14,7 +15,7 @@ bool exited_with_code_stored::operator()(int exit_status)
 {
 # if GTEST_OS_WINDOWS || GTEST_OS_FUCHSIA
 
-  *m_actual_exit_code = exit_code;
+  *m_actual_exit_code = exit_status;
   return exit_status == m_expected_exit_code;
 
 #else
