@@ -139,3 +139,22 @@ jobs:
           message("::error::${error_message}")
           message(FATAL_ERROR "Build failed")
         endif()
+
+    - name: Run benchmark on windows
+      if: startsWith(matrix.config.os, 'windows')
+      working-directory: build
+      run: ./bench.exe
+
+    - name: Run benchmark on windows
+      if: startsWith(matrix.config.os, 'linux')
+      working-directory: build
+      run: ./bench
+
+    - name: Run benchmark on windows
+      if: startsWith(matrix.config.os, 'macOS')
+      working-directory: build
+      run: ./bench
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Updated results
