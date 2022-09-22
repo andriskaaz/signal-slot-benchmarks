@@ -35,6 +35,10 @@ jobs:
             os: macos-latest,
             cc: "clang", cxx: "clang++"
           }
+    outputs:
+      windows: ${{ steps.benchmark_result_windows.outputs.stdout }}
+      ubuntu: ${{ steps.benchmark_result_ubuntu.outputs.stdout }}
+      macos: ${{ steps.benchmark_result_macos.outputs.stdout }}
     steps:
     - uses: actions/checkout@v3
       with:
@@ -141,22 +145,55 @@ jobs:
         endif()
 
     - name: Run benchmark on windows
+      id: windows_benchmark
       if: startsWith(matrix.config.os, 'windows')
       working-directory: build
       run: ./bench.exe
 
     - name: Run benchmark on ubuntu
+      id: ubuntu_benchmark
       if: startsWith(matrix.config.os, 'ubuntu')
       working-directory: build
       run: ./bench
 
-    - name: Run benchmark on macOs
+    - name: Run benchmark on macOS
+      id: macos_benchmark
       if: startsWith(matrix.config.os, 'macOS')
       working-directory: build
       run: ./bench
+    
+    - name: Pass result as output
+      uses: mathiasvr/command-output@v1
+      id: benchmark_result_windows
+      if: startsWith(matrix.config.os, 'windows')
+      with:
+        shell: bash
+        run: cat ./build/report.txt
 
+    - name: Pass result as output
+      uses: mathiasvr/command-output@v1
+      id: benchmark_result_ubuntu
+      if: startsWith(matrix.config.os, 'ubuntu')
+      with:
+        shell: bash
+        run: cat ./build/report.txt
+
+    - name: Pass result as output
+      uses: mathiasvr/command-output@v1
+      id: benchmark_result_macos
+      if: startsWith(matrix.config.os, 'macOS')
+      with:
+        shell: bash
+        run: cat ./build/report.txt
+
+  publish_results:
+    name: Publish results
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/master'
+
+    steps:
     - uses: stefanzweifel/git-auto-commit-action@v4
-      if: github.ref == 'refs/heads/master'
       with:
         commit_message: Updated results
         file_pattern: 'results/**'

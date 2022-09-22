@@ -469,15 +469,6 @@ void output_reports(BenchmarkClassResults const& records, T& ost)
 
 int main(int argc, char* argv[])
 {
-    #if defined(__clang__)
-        std::string compilerName("clang");
-    #elif defined(__GNUC__)
-        std::string compilerName("gcc");
-    #elif defined(_MSC_VER)
-        std::string compilerName("msvc");
-    #else
-        #error "Unknown compiler"
-    #endif
     // TODO:
     // Jl_signal uses a static allocator for maximum performance
     // jl::StaticSignalConnectionAllocator<C_JLSIGNAL_MAX> signal_con_allocator;
@@ -540,11 +531,8 @@ int main(int argc, char* argv[])
         run_all_benchmarks();
     }
     a1.get();
-
-    auto relativePath = std::string("../results/") + compilerName + "/" + "README.md";
-    auto path = std::filesystem::canonical(relativePath);
  
-    if (std::ofstream ofs{ path, std::ios::trunc })
+    if (std::ofstream ofs{ "report.txt", std::ios::trunc })
     {
         auto start_c = std::chrono::system_clock::to_time_t(start);
 
