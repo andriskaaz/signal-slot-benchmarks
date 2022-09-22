@@ -1,7 +1,6 @@
 #include "tests/hpp/exited_with_code_stored.hpp"
 
 #include <gtest/gtest.h>
-#define GTEST_OS_WINDOWS
 
 exited_with_code_stored::exited_with_code_stored
 (int* exit_code)
