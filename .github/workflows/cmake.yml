@@ -145,12 +145,12 @@ jobs:
       working-directory: build
       run: ./bench.exe
 
-    - name: Run benchmark on windows
-      if: startsWith(matrix.config.os, 'linux')
+    - name: Run benchmark on ubuntu
+      if: startsWith(matrix.config.os, 'ubuntu')
       working-directory: build
       run: ./bench
 
-    - name: Run benchmark on windows
+    - name: Run benchmark on macOs
       if: startsWith(matrix.config.os, 'macOS')
       working-directory: build
       run: ./bench
