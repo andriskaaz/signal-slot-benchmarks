@@ -199,6 +199,9 @@ jobs:
 
     - name: Save results
       run: |
+        rm ./results/msvc/README.md
+        rm ./results/gcc/README.md
+        rm ./results/clang/README.md
         echo '${{ needs.build.outputs.windows }}' >> ./results/msvc/README.md
         echo '${{ needs.build.outputs.ubuntu }}' >> ./results/gcc/README.md
         echo '${{ needs.build.outputs.macos }}' >> ./results/clang/README.md
