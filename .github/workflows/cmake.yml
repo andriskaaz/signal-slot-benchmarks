@@ -193,7 +193,17 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Save results
+      run: |
+        echo '${{ needs.build.outputs.windows }}' >> ./results/msvc/README.md
+        echo '${{ needs.build.outputs.ubuntu }}' >> ./results/gcc/README.md
+        echo '${{ needs.build.outputs.macos }}' >> ./results/clang/README.md
+
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Updated results
+        commit_message: Updated benchmark results
         file_pattern: 'results/**'
