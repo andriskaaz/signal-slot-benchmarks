@@ -195,9 +195,9 @@ jobs:
     steps:
     - name: Save results
       run: |
-        echo '${{ needs.build.outputs.windows }}' >> results/msvc/README.md
-        echo '${{ needs.build.outputs.ubuntu }}' >> results/gcc/README.md
-        echo '${{ needs.build.outputs.macos }}' >> results/clang/README.md
+        echo '${{ needs.build.outputs.windows }}' >> ./results/msvc/README.md
+        echo '${{ needs.build.outputs.ubuntu }}' >> ./results/gcc/README.md
+        echo '${{ needs.build.outputs.macos }}' >> ./results/clang/README.md
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Updated benchmark results
