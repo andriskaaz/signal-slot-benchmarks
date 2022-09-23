@@ -33,3 +33,39 @@
 | [* tripleslash rocket](https://github.com/tripleslash/rocket) | &mdash; | 24 b | X | intrusive list | X |
 | [tripleslash rocket st](https://github.com/tripleslash/rocket) | &mdash; | 24 b | X | intrusive list | - |
 
+
+| Library | [constr] | [destr] | conn | disconn | reconn | emit | all | threaded | score |
+|---------|----------|---------|------|---------|--------|------|-----|----------|-------|
+| TheWisp Signals | 20226 | 25162 | 4249 | 19265 | 11864 | 84958 | 8692 | 0 | 129029 |
+| Montellese cpp-signal | 52625 | 19421 | 9748 | 10763 | 9897 | 87170 | 4693 | 0 | 122272 |
+| palacaze sigslot | 36463 | 26857 | 6174 | 9513 | 13249 | 79608 | 3120 | 0 | 111664 |
+| pbhogan Signals | 4783 | 6726 | 5987 | 6822 | 9085 | 80279 | 3801 | 0 | 105974 |
+| tripleslash rocket st | 2385 | 3094 | 8353 | 10108 | 8311 | 65073 | 4338 | 0 | 96183 |
+| fr00b0 nod | 31163 | 22519 | 8201 | 20408 | 30318 | 26485 | 8297 | 0 | 93709 |
+| * Montellese cpp-signal | 16612 | 15652 | 5473 | 7616 | 5459 | 67586 | 3072 | 2963 | 92170 |
+| KDBA KDBindings | 49047 | 33801 | 3201 | 7290 | 8522 | 67107 | 5316 | 0 | 91436 |
+| * palacaze sigslot | 3866 | 3304 | 5052 | 6969 | 9011 | 46804 | 3799 | 3510 | 75145 |
+| * fr00b0 nod | 18724 | 17010 | 6003 | 12531 | 15557 | 23081 | 5375 | 5319 | 67865 |
+| * KtnSignalSlot | 9462 | 3611 | 2042 | 5453 | 2439 | 43730 | 1472 | 1451 | 56588 |
+| * Kosta signals-cpp | 18674 | 6865 | 3079 | 24247 | 2395 | 19761 | 1942 | 1879 | 53302 |
+| * tripleslash rocket | 1364 | 1251 | 4197 | 5920 | 4397 | 13746 | 1817 | 1925 | 32002 |
+| wqking eventpp | 14608 | 13398 | 3485 | 4939 | 3470 | 16887 | 1784 | 0 | 30566 |
+
+| Library | Build Size | Signal Size | Header Only | Data Structure | Thread Safe |
+| ------- |:----------:|:-----------:|:-----------:| -------------- |:-----------:|
+| [* Montellese cpp-signal](https://github.com/Montellese/cpp-signal) | &mdash; | 96 b | X | std::forward_list | X |
+| [Montellese cpp-signal](https://github.com/Montellese/cpp-signal) | &mdash; | 16 b | X | std::forward_list | - |
+| [wqking eventpp](https://github.com/wqking/eventpp) | &mdash; | 120 b | X | doubly linked list | - |
+| [TheWisp Signals](https://github.com/TheWisp/signals) | &mdash; | 56 b | X | std::vector | - |
+| [KDBA KDBindings](https://github.com/KDAB/KDBindings) | &mdash; | 16 b | X | GenerationalIndexArray | - |
+| [* Kosta signals-cpp](https://github.com/Kosta-Github/signals-cpp) | &mdash; | 96 b | X | std::vector | X |
+| [* KtnSignalSlot](https://gitlab.com/KtnFramework/Libraries/KtnSignalSlot.git) | &mdash; | 200 b | X | std::vector | X |
+| [* fr00b0 nod](https://github.com/fr00b0/nod) | &mdash; | 144 b | X | std::vector | X |
+| [fr00b0 nod](https://github.com/fr00b0/nod) | &mdash; | 72 b | X | std::vector | - |
+| [pbhogan Signals](https://github.com/pbhogan/Signals) | &mdash; | 16 b | X | std::set | - |
+| [* palacaze sigslot](https://github.com/palacaze/sigslot) | &mdash; | 104 b | X | std::vector | X |
+| [palacaze sigslot](https://github.com/palacaze/sigslot) | &mdash; | 48 b | X | std::vector | - |
+| [* tripleslash rocket](https://github.com/tripleslash/rocket) | &mdash; | 24 b | X | intrusive list | X |
+| [tripleslash rocket st](https://github.com/tripleslash/rocket) | &mdash; | 24 b | X | intrusive list | - |
+
+
