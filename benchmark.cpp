@@ -534,7 +534,7 @@ int main(int argc, char* argv[])
  
     if (std::ofstream ofs{ "report.txt", std::ios::trunc })
     {
-        auto start_c = std::chrono::system_clock::to_time_t(start);
+        // auto start_c = std::chrono::system_clock::to_time_t(start);
 
         auto tee = std::tie(std::cout, ofs);
         // tee << "\n" << std::put_time(std::localtime(&start_c), "%c") << "\n";
@@ -543,8 +543,8 @@ int main(int argc, char* argv[])
         output_metrics_report(tee);
         // output_plotly_reports(s_current_results, tee);
 
-        auto stop = std::chrono::system_clock::now();
-        auto stop_c = std::chrono::system_clock::to_time_t(stop);
+        // auto stop = std::chrono::system_clock::now();
+        // auto stop_c = std::chrono::system_clock::to_time_t(stop);
         // tee << "\n" << std::put_time(std::localtime(&stop_c), "%c") << "\n";
 
         ofs << std::endl;
