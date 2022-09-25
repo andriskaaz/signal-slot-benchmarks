@@ -15,24 +15,9 @@ However, these benchmarks were designed to provide impartial results regardless 
 
 Tested Environments
 -------------------
-
-<div style="text-align:center; margin-bottom:1em;">click to view results</div>
-<div style="text-align:center; display:flex;">
-	<div style="flex:1;">
-    	<a href="/results/benchmarks_msvc/README.md">
-        	<button type="button" style="padding:2em; cursor:pointer;  font-size:2em; width:90%;">
-            	MSVC (Windows) [RECENTLY UPDATED]
-            </button>
-        </a>
-	</div>
-	<div style="flex:1;">
-        <a href="/results/benchmarks_gcc/README.md">
-            <button type="button" style="padding:2em; cursor:pointer; font-size:2em; width:90%;">
-            	GCC (Linux) [HELP WANTED]
-            </button>
-        </a>
-	</div>
-</div>
+- [MSVC(Windows)](/results/msvc/README.md)
+- [GCC(Ubuntu)](/results/gcc/README.md)
+- [Clang(macOS)](/results/clang/README.md)
 
 Maintainers
 -----------
