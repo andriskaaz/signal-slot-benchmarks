@@ -23,7 +23,7 @@
 
 typedef std::minstd_rand Rng;
 
-struct cstr_cmp : public std::binary_function<const char*, const char*, bool> {
+struct cstr_cmp {
 public:
     bool operator() (const char* str1, const char* str2) const
     {
